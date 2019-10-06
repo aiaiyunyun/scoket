@@ -1,0 +1,79 @@
+plugins {
+	id 'org.springframework.boot' version '2.1.9.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+	id 'java'
+}
+
+group = 'com.lsege'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+	developmentOnly
+	runtimeClasspath {
+		extendsFrom developmentOnly
+	}
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+//repositories {
+//	mavenCentral()
+//
+//	maven { url 'http://192.168.3.11:8081/repository/maven-snapshots/' }
+//	maven { url 'http://192.168.3.11:8081/repository/maven-releases/' }
+//}
+
+ext {
+	set('springCloudVersion', "Greenwich.SR3")
+}
+
+dependencies {
+
+//	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+	implementation 'org.springframework.boot:spring-boot-starter-websocket'
+//	implementation 'org.springframework.cloud:spring-cloud-starter-gateway'
+	compileOnly 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	runtimeOnly 'mysql:mysql-connector-java'
+	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.10.0'
+// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-parent
+//	compile group: 'org.springframework.boot', name: 'spring-boot-starter-parent', version: '2.1.9.RELEASE', ext: 'pom'
+
+	compile group: 'com.alibaba', name: 'fastjson', version: '1.2.61'
+
+	// https://mvnrepository.com/artifact/com.corundumstudio.socketio/netty-socketio
+	compile group: 'com.corundumstudio.socketio', name: 'netty-socketio', version: '1.7.17'
+// https://mvnrepository.com/artifact/io.socket/socket.io-client
+	compile group: 'io.socket', name: 'socket.io-client', version: '1.0.0'
+	compile group: 'io.netty', name: 'netty-resolver', version: '5.0.0.Alpha2'
+	compile group: 'io.netty', name: 'netty-transport', version: '5.0.0.Alpha2'
+	compile group: 'org.codehaus.janino', name: 'commons-compiler', version: '3.1.0'
+
+	compile group: 'io.netty', name: 'netty-buffer', version: '5.0.0.Alpha2'
+	compile group: 'io.netty', name: 'netty-codec', version: '5.0.0.Alpha2'
+	compile group: 'io.netty', name: 'netty-codec-http', version: '5.0.0.Alpha2'
+	compile group: 'io.netty', name: 'netty-common', version: '5.0.0.Alpha2'
+	compile group: 'io.netty', name: 'netty-handler', version: '5.0.0.Alpha2'
+	compile group: 'io.netty', name: 'netty-transport-native-epoll', version: '5.0.0.Alpha2'
+	compile group: 'io.netty', name: 'netty-transport-native-unix-common', version: '4.1.42.Final'
+
+
+
+
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
